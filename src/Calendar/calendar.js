@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import timeGridPlugin from "@fullcalendar/timegrid";
+// import FullCalendar from "@fullcalendar/react";
+// import dayGridPlugin from "@fullcalendar/daygrid";
+// import interactionPlugin from "@fullcalendar/interaction";
+// import timeGridPlugin from "@fullcalendar/timegrid";
 import swal from "@sweetalert/with-react";
 import CalendarService from "../_services/CalendarServices";
 import EditEvent from "./EditEvent";
@@ -245,7 +245,7 @@ const Calendar = (props) => {
       <div className="col-md-9">
         <div className="card card-primary">
           <div className="card-body p-0">
-            <FullCalendar
+            {/* <FullCalendar
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               headerToolbar={{
                 left: "prev,next today",
@@ -263,7 +263,7 @@ const Calendar = (props) => {
               // eventContent={renderEventContent}
               eventClick={openModal}
             // eventsSet={handleEvents}
-            />
+            /> */}
           </div>
         </div>
       </div>
