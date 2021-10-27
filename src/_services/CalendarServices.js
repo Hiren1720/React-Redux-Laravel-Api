@@ -1,30 +1,30 @@
 import { axios } from "../http";
-
-const CALENDAR_EVENT_API_BASE_URL = "http://localhost:8000/api/event";
+import {ApiUrl} from "./ApiUrl";
+import {Event} from './ApiHelper';
 
 class CalendarService {
   getEvent() {
     // console.log("EMPLOYEE", employee);
-    return axios.get(CALENDAR_EVENT_API_BASE_URL);
+    return axios.get(`${ApiUrl.UserApiUrl}${Event.getEvent}`);
   }
   createEvent(calendarEvent) {
     // console.log(calendarEvent);
-    return axios.post(CALENDAR_EVENT_API_BASE_URL + "/store", calendarEvent);
+    return axios.post(`${ApiUrl.UserApiUrl}${Event.addEvent}`, calendarEvent);
   }
 
   getEventById(eventId) {
-    return axios.get(CALENDAR_EVENT_API_BASE_URL + "/edit/" + eventId);
+    return axios.get(`${ApiUrl.UserApiUrl}${Event.editEvent}${eventId}` );
   }
 
   updateEvent(event, eventId) {
     return axios.post(
-      CALENDAR_EVENT_API_BASE_URL + "/update/" + eventId,
+        `${ApiUrl.UserApiUrl}${Event.updateEvent}${eventId}`,
       event
     );
   }
 
   deleteEvent(eventId) {
-    return axios.delete(CALENDAR_EVENT_API_BASE_URL + "/destroy/" + eventId);
+    return axios.delete(`${ApiUrl.UserApiUrl}${Event.deleteEvent}${eventId}`);
   }
   //   bulkDeleteEmployees(employees) {
   //     return axios.post(EMPLOYEE_API_BASE_URL + "/destroy", employees);

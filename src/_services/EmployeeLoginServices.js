@@ -1,12 +1,13 @@
 import { axios, setToken } from "../http";
 import { ApiUrl } from "./ApiUrl";
-const EMPLOYEE_LOGIN_API_BASE_URL = "http://localhost:8000/api-employee/employee";
+import {EmployeeLogin,Salary} from "./ApiHelper";
+
 
 class EmployeeLoginService {
   getEmployee() {
     return new Promise((resolve, reject) => {
       return axios
-        .get(EMPLOYEE_LOGIN_API_BASE_URL)
+        .get(`${ApiUrl.EmployeeApiUrl}${EmployeeLogin.getEmployee}`)
         .then((res) => {
           // Object.keys(res.data).forEach(function(key){
           //     if(res.data[key] === null){
@@ -24,15 +25,15 @@ class EmployeeLoginService {
     });
   }
   getSalaryById(salaryId) {
-    return axios.get(EMPLOYEE_LOGIN_API_BASE_URL + "/salary/" + salaryId);
+    return axios.get(`${ApiUrl.EmployeeApiUrl}${Salary.getSalary}/${salaryId}`);
   }
   getSalary() {
-    return axios.get(EMPLOYEE_LOGIN_API_BASE_URL + "/salary");
+    return axios.get(`${ApiUrl.EmployeeApiUrl}${Salary.getSalary}`);
   }
   getEmployeeLogin(employee) {
     return new Promise((resolve, reject) => {
       return axios
-        .post(EMPLOYEE_LOGIN_API_BASE_URL + "/login", employee)
+        .post(`${ApiUrl.EmployeeApiUrl}${EmployeeLogin.login}`, employee)
         .then((res) => {
           setToken(res.data.token);
           window.location.href = "/";
@@ -45,16 +46,16 @@ class EmployeeLoginService {
   }
   updateEmployee(employee, employeeId) {
     return axios.post(
-      EMPLOYEE_LOGIN_API_BASE_URL + "/update/" + employeeId,
+        `${ApiUrl.EmployeeApiUrl}${EmployeeLogin.update}${employeeId}` ,
       employee
     );
   }
 
-  deleteEmployee(employeeId) {
-    return axios.delete(EMPLOYEE_LOGIN_API_BASE_URL + "/delete/" + employeeId);
-  }
-  bulkDeleteEmployees(employees) {
-    return axios.post(EMPLOYEE_LOGIN_API_BASE_URL + "/destroy", employees);
-  }
+  // deleteEmployee(employeeId) {
+  //   return axios.delete(EMPLOYEE_LOGIN_API_BASE_URL + "/delete/" + employeeId);
+  // }
+  // bulkDeleteEmployees(employees) {
+  //   return axios.post(EMPLOYEE_LOGIN_API_BASE_URL + "/destroy", employees);
+  // }
 }
 export default new EmployeeLoginService();

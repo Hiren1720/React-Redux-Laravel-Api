@@ -1,11 +1,11 @@
 import { axios as Http, setToken } from "../http";
 import { ApiUrl } from "./ApiUrl";
-const LOGIN_API_BASE_URL = `${ApiUrl}/user`;
+import {User} from './ApiHelper';
 
 class LoginService {
   getUser() {
     return new Promise((resolve, reject) => {
-      return Http.get(LOGIN_API_BASE_URL)
+      return Http.get(`${ApiUrl.UserApiUrl}${User.getUser}`)
         .then((res) => {
           return resolve(res.data);
         })
@@ -17,13 +17,13 @@ class LoginService {
   }
 
   createUser(user) {
-    return Http.post(LOGIN_API_BASE_URL + "/register", user);
+    return Http.post(`${ApiUrl.UserApiUrl}${User.register}`, user);
   }
 
   getLogin(user) {
     // console.log("USER", user);
     return new Promise((resolve, reject) => {
-      return Http.post(LOGIN_API_BASE_URL + "/login", user)
+      return Http.post(`${ApiUrl.UserApiUrl}${User.login}`, user)
         .then((res) => {
           setToken(res.data.token);
           return resolve(res.data);
@@ -35,7 +35,7 @@ class LoginService {
   }
 
   updateUser(user) {
-    return Http.put(LOGIN_API_BASE_URL + "/update", user);
+    return Http.put(`${ApiUrl.UserApiUrl}${User.update}`, user);
   }
 
   // deleteEmployee(employeeId){

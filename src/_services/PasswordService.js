@@ -1,13 +1,12 @@
 import { axios } from "../http";
-
-const PASSWORD_API_BASE_URL = "http://localhost:8000/api/user/password";
-
+import {ApiUrl} from "./ApiUrl";
+import {Password} from './ApiHelper';
 class PasswordService {
   requestEmail(user) {
-    return axios.post(PASSWORD_API_BASE_URL + "/requestEmail", user);
+    return axios.post(`${ApiUrl.UserApiUrl}${Password.password}${Password.forgotPassword}`, user);
   }
   resetPassword(user) {
-    return axios.post(PASSWORD_API_BASE_URL + "/resetPassword", user);
+    return axios.post(`${ApiUrl.UserApiUrl}${Password.password}${Password.resetPassword}`, user);
   }
 }
 export default new PasswordService();

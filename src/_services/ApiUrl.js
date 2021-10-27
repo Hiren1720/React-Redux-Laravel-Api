@@ -1,2 +1,4 @@
-const ApiUrl = "http://localhost:8000/api";
-export { ApiUrl };
+export const ApiUrl = {
+    UserApiUrl : "http://localhost:8000/api/",
+    EmployeeApiUrl :"http://localhost:8000/api-employee/",
+}
